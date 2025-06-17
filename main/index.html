@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Surveillance for Enhanced Public Safety</title>
+  <style>
+    /* Reset and Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f97316;
+      --accent-dark: #ea580c;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
+    
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--light);
+    }
+    
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    
+    /* Enhanced Navigation Bar */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: rgba(30, 41, 59, 0.95);
+      padding: 20px 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      padding: 15px 0;
+      background: rgba(30, 41, 59, 0.98);
+    }
+    
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    
+    nav ul li a {
+      color: var(--light);
+      font-weight: 500;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background: var(--accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    
+    nav ul li a:hover {
+      color: var(--accent);
+      background: rgba(249, 115, 22, 0.1);
+    }
+    
+    /* Enhanced Hero Section */
+    .hero {
+  height: 100vh !important;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url('./images/purple_blue_gradient.jpg') center/cover no-repeat !important;
+  display: flex !important;
+  /* other properties with !important */
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(37, 99, 235, 0.2), rgba(249, 115, 22, 0.2));
+      animation: gradientShift 10s infinite alternate;
+    }
+    
+    @keyframes gradientShift {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+      100% { opacity: 0.2; }
+    }
+    
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero p {
+      font-size: 1.6rem;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+      animation: fadeInUp 1s ease 0.3s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Enhanced Section Styles */
+    section {
+      padding: 100px 20px;
+      position: relative;
+    }
+    
+    section:nth-child(even) {
+      background: #f1f5f9;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+    }
+    
+    .section-title {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 60px;
+      color: var(--dark);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    
+    .section-text {
+      font-size: 1.1rem;
+      text-align: justify;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      color: var(--gray);
+    }
+    
+    /* Enhanced Module Cards */
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 40px;
+      padding: 20px;
+    }
+    
+    .module-card {
+      background: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    
+    .module-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .module-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+    
+    .module-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .module-card .card-content {
+      padding: 25px;
+    }
+    
+    .module-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      transition: color 0.3s ease;
+    }
+    
+    .module-card:hover h3 {
+      color: var(--accent);
+    }
+    
+    .module-card p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
+    .module-card a {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--primary);
+      color: var(--light);
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .module-card a:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);
+    }
+    
+    /* Enhanced Process Steps */
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
+    
+    .process-step {
+      background: var(--light);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .process-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+      transition: all 0.3s ease;
+    }
+    
+    .process-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .process-step:hover::before {
+      background: var(--accent);
+    }
+    
+    .process-step h4 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      transition: color 0.3s ease;
+    }
+    
+    .process-step:hover h4 {
+      color: var(--accent);
+    }
+    
+    .process-step p {
+      color: var(--gray);
+      font-size: 1.05rem;
+    }
+    
+    /* Enhanced Objectives Section */
+    #objectives ul {
+      text-align: left;
+      margin: 30px auto;
+      max-width: 800px;
+    }
+    
+    #objectives li {
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--light);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 50px;
+    }
+    
+    #objectives li::before {
+      content: '→';
+      position: absolute;
+      left: 20px;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    #objectives li:hover {
+      transform: translateX(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Enhanced Footer */
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+    }
+    
+    footer p {
+      margin: 10px 0;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+    
+    footer p:hover {
+      opacity: 1;
+    }
+
+    /* Add smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Scroll-to-top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: var(--light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+    
+    .scroll-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    /* Add responsive design improvements */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.3rem; }
+      .section-title { font-size: 2.5rem; }
+      nav ul { 
+        flex-direction: column; 
+        align-items: center; 
+        padding: 15px 0;
+        gap: 1rem; 
+      }
+      .process-step, .module-card { 
+        transform: translateY(0); 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script src="./dist/bundle.js"></script>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#modules">Modules</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#objectives">Objectives</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Smart Surveillance for Enhanced Public Safety</h1>
+      <p>Empowering public safety through AI-driven, real-time surveillance.</p>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section id="introduction">
+    <div class="container">
+      <h2 class="section-title">Introduction</h2>
+      <p class="section-text">
+        The "Smart Surveillance for Enhanced Public Safety" project leverages state-of-the-art deep learning techniques, such as YOLOv4, to analyze live video feeds in real time. Designed to improve urban security, this unified system integrates four key modules—Fall Detection, Intrusion Detection, Crowd Management, and Abandoned Object Detection—each addressing specific safety concerns.
+      </p>
+      <p class="section-text">
+        By automating threat detection and providing immediate alerts, the system enhances security in public spaces, transportation hubs, and large events, ensuring a safer environment for all.
+      </p>
+    </div>
+  </section>
+
+  <!-- Modules Section -->
+  <section id="modules">
+    <div class="container">
+      <h2 class="section-title">Project Modules</h2>
+      <div class="modules">
+        <!-- Fall Detection Module -->
+        <div class="module-card">
+          <img src="images\fall_detection.jpg" alt="Fall Detection" />
+          <div class="card-content">
+            <h3>Fall Detection</h3>
+            <p>
+              Utilizes advanced posture analysis and deep learning to detect falls in real time, ensuring rapid response to potential injuries.
+            </p>
+            <a href="http://127.0.0.1:5001/" target="_blank">Explore Fall Detection</a>
+          </div>
+        </div>
+        <!-- Crowd Management Module -->
+        <div class="module-card">
+          <img src="images\crowd_management.jpg" alt="Crowd Management" />
+          <div class="card-content">
+            <h3>Crowd Management</h3>
+            <p>
+              Monitors crowd density and behavior to prevent overcrowding and manage public gatherings effectively.
+            </p>
+            <a href="http://127.0.0.1:5002/">Explore Crowd Management</a>
+          </div>
+        </div>
+        <!-- Abandoned Object Detection Module -->
+        <div class="module-card">
+          <img src="images\AOD.jpg" alt="Abandoned Object Detection" />
+          <div class="card-content">
+            <h3>Abandoned Object Detection</h3>
+            <p>
+              Identifies unattended or suspicious objects in real time, triggering alerts to mitigate potential security risks.
+            </p>
+            <a href="http://127.0.0.1:5003/">Explore Object Detection</a>
+          </div>
+        </div>
+        <!-- Intrusion Detection Module -->
+        <div class="module-card">
+          <img src="images\intrusion.jpg" alt="Intrusion Detection" />
+          <div class="card-content">
+            <h3>Intrusion Detection</h3>
+            <p>
+              Detects unauthorized access and breaches by analyzing movement patterns, ensuring a secure perimeter at all times.
+            </p>
+            <a href="http://127.0.0.1:5004/">Explore Intrusion Detection</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="process">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="process">
+        <div class="process-step">
+          <h4>Data Acquisition</h4>
+          <p>
+            Real-time video feeds from CCTV cameras capture live data from multiple locations.
+          </p>
+        </div>
+        <div class="process-step">
+          <h4>Data Preprocessing</h4>
+          <p>
+            Video feeds are filtered and normalized to reduce noise and enhance detection accuracy.
+          </p>
+        </div>
+        <div class="process-step">
+          <h4>Event Detection</h4>
+          <p>
+            Advanced algorithms, including YOLOv4, analyze video frames to detect falls, intrusions, crowd anomalies, and unattended objects.
+          </p>
+        </div>
+        <div class="process-step">
+          <h4>Alert Generation</h4>
+          <p>
+            Upon detecting any abnormal event, the system generates real-time alerts for immediate intervention.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Objectives & Benefits Section -->
+  <section id="objectives">
+    <div class="container">
+      <h2 class="section-title">Project Objectives & Benefits</h2>
+      <p class="section-text">
+        The Smart Surveillance system aims to revolutionize public safety through real-time monitoring and intelligent alert systems. Its core objectives and benefits include:
+      </p>
+      <ul class="section-text">
+        <li>Implementing real-time monitoring to quickly identify and respond to potential safety threats.</li>
+        <li>Reducing emergency response times with accurate and timely alerts.</li>
+        <li>Achieving high detection accuracy to minimize false alarms.</li>
+        <li>Integrating multiple detection models into a unified surveillance platform.</li>
+        <li>Providing an intuitive, user-friendly interface for efficient security management.</li>
+      </ul>
+      <p class="section-text">
+        These goals ensure enhanced situational awareness, optimized resource allocation, and a safer environment across urban areas, transportation hubs, and public events.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact / Footer Section -->
+  <footer id="contact">
+    <div class="container">
+      <p>© 2025 Smart Surveillance for Enhanced Public Safety. All Rights Reserved.</p>
+      <p>For further information, contact: <a href="mailto:info@smartsurveillance.com" style="color: var(--accent);">info@smartsurveillance.com</a></p>
+    </div>
+  </footer>
+
+  <!-- Scroll to top button -->
+  <div class="scroll-to-top">
+    ↑
+  </div>
+
+  <!-- JavaScript for interactive elements -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll to top button
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        scrollToTopBtn.classList.add('active');
+      } else {
+        scrollToTopBtn.classList.remove('active');
+      }
+    });
+    
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Add animation to elements when they enter viewport
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.section-title, .section-text, .module-card, .process-step').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
