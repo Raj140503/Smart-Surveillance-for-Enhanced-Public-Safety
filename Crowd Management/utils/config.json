@@ -1,0 +1,12 @@
+{
+    "Email_Send": "nirajm.comp_ioe@bkc.met.edu",
+    "Email_Receive": "nirajmore38@gmail.com",
+    "Email_Password": "olzkflljzpgnvrin",
+    "url": 0,
+    "ALERT": true,
+    "Threshold": 3,
+    "Thread": false,
+    "Log": true,
+    "Scheduler": false,
+    "Timer": false
+}
