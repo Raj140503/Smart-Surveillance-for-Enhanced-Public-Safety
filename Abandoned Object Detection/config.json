@@ -1,0 +1,7 @@
+{
+    "Email_Send": "sender_email",
+    "Email_Receive": "receiver_email",
+    "Email_Password": "passs",
+    "ALERT": true,
+    "Log": true
+}
