@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Intrusion Detection System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Bubble Animation Background */
+    .bubble-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rise 15s infinite ease-in;
+      opacity: 0;
+    }
+    
+    .bubble:nth-child(1) {
+      width: 40px;
+      height: 40px;
+      left: 10%;
+      animation-duration: 8s;
+      animation-delay: 1s;
+    }
+    
+    .bubble:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      left: 20%;
+      animation-duration: 10s;
+      animation-delay: 2s;
+    }
+    
+    .bubble:nth-child(3) {
+      width: 30px;
+      height: 30px;
+      left: 35%;
+      animation-duration: 7s;
+    }
+    
+    .bubble:nth-child(4) {
+      width: 80px;
+      height: 80px;
+      left: 50%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+    
+    .bubble:nth-child(5) {
+      width: 50px;
+      height: 50px;
+      left: 65%;
+      animation-duration: 9s;
+      animation-delay: 3s;
+    }
+    
+    .bubble:nth-child(6) {
+      width: 35px;
+      height: 35px;
+      left: 80%;
+      animation-duration: 8s;
+      animation-delay: 2s;
+    }
+    
+    .bubble:nth-child(7) {
+      width: 45px;
+      height: 45px;
+      left: 90%;
+      animation-duration: 12s;
+      animation-delay: 1s;
+    }
+    
+    @keyframes rise {
+      0% {
+        bottom: -100px;
+        opacity: 0.1;
+      }
+      50% {
+        opacity: 0.2;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+      }
+    }
+    
+    /* Gradient Text Animation */
+    .gradient-text {
+      background: linear-gradient(90deg, #8B5CF6, #3B82F6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% auto;
+      animation: gradient 3s linear infinite;
+    }
+    
+    @keyframes gradient {
+      0% {
+        background-position: 0% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Full Screen Welcome Section -->
+  <section class="relative h-screen flex flex-col items-center justify-center">
+    <!-- Bubble Background Animation -->
+    <div class="bubble-bg">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10 text-center">
+      <div class="animate__animated animate__fadeIn">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-8">Welcome to the Intrusion Detection System</h1>
+      </div>
+      
+      <div class="animate__animated animate__fadeInDown">
+        <h2 class="text-6xl md:text-7xl font-black gradient-text mb-8">AI Intrusion Detection System</h2>
+      </div>
+      
+      <div class="animate__animated animate__fadeIn animate__delay-1s max-w-2xl mx-auto mb-12">
+        <p class="text-xl text-gray-300 leading-relaxed">
+          Our cutting-edge AI-powered Intrusion Detection System provides real-time facial recognition to secure your most sensitive areas. Utilizing advanced computer vision and machine learning algorithms, our system can detect unauthorized personnel and alert security within seconds.
+        </p>
+      </div>
+      
+      <div class="animate__animated animate__fadeInUp animate__delay-1s">
+        <a href="#main-content" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg transform transition duration-300 hover:scale-105 shadow-lg text-xl inline-block">
+          Learn More
+        </a>
+      </div>
+    </div>
+    
+    <div class="scroll-down text-gray-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+  
+  <!-- Main Content -->
+  <section id="main-content" class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- Navigation Buttons -->
+      <div class="flex flex-col md:flex-row justify-center gap-6 mb-16 animate__animated animate__fadeInUp">
+        <a href="{{ url_for('detection') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg transform transition duration-300 hover:scale-105 shadow-lg text-xl">
+          Launch Detection
+        </a>
+        <a href="http://127.0.0.1:5005/" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg transform transition duration-300 hover:scale-105 shadow-lg text-xl">
+          View Dashboard
+        </a>
+      </div>
+      
+      <!-- Implementation Details -->
+      <div class="max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 mb-12 animate__animated animate__fadeIn">
+        <h3 class="text-2xl font-bold mb-4 text-indigo-400">Implementation Details</h3>
+        <ul class="space-y-2 mb-6 text-gray-300">
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Flask backend with Python
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Real-time face detection using OpenCV (face_recognizer.py)
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Delayed alerts (only alert if unknown face persists > 5 sec)
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Intrusion logging (detection_log.csv)
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Face data handled via face_taker.py and face_trainer.py
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Applications -->
+      <div class="max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 animate__animated animate__fadeIn">
+        <h3 class="text-2xl font-bold mb-4 text-indigo-400">Applications</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+          <div class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Bank locker rooms
+          </div>
+          <div class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+            </svg>
+            High-security server rooms
+          </div>
+          <div class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+            Research labs and data centers
+          </div>
+          <div class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+            </svg>
+            Government buildings
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="w-full text-center p-4 text-gray-500 text-sm">
+    &copy; 2025 AI Intrusion Detection System. All rights reserved.
+  </footer>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
