@@ -9,6 +9,18 @@
 
 ---
 
+## 📜 Patent
+
+This project contributed to a patent application related to AI-powered
+surveillance and intelligent public safety monitoring.
+
+**Patent Status:** Published
+
+The work focuses on applying computer vision and AI techniques to
+automated surveillance, threat detection, and public safety.
+
+---
+
 ## 📌 Overview
 
 Traditional surveillance systems depend heavily on continuous human monitoring, making it difficult to identify safety-critical events quickly and consistently.
@@ -23,18 +35,6 @@ The system is designed around multiple independent detection modules:
 * 📦 **Abandoned Object Detection**
 
 The project demonstrates how computer vision can be integrated into an end-to-end intelligent surveillance workflow for automated event detection and alerting.
-
----
-
-## 📜 Patent
-
-This project contributed to a patent application related to AI-powered
-surveillance and intelligent public safety monitoring.
-
-**Patent Status:** Published
-
-The work focuses on applying computer vision and AI techniques to
-automated surveillance, threat detection, and public safety.
 
 ---
 
