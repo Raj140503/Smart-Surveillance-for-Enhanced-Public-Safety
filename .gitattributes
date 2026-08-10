@@ -1,4 +1,11 @@
-*.html linguist-vendored
-*.css linguist-vendored
-*.js linguist-vendored
-*.json linguist-vendored
+# Exclude web/template assets from GitHub language statistics
+*.html linguist-generated
+*.css linguist-generated
+*.js linguist-generated
+
+# Exclude generated Python/cache files
+__pycache__/** linguist-generated
+*.pyc linguist-generated
+
+# Exclude configuration/data files from language statistics
+*.json linguist-generated
